@@ -53,10 +53,10 @@ class okexAPI
 
         curl_setopt_array($this->curl, array
         (
-            CURLOPT_USERAGENT => 'executium OKEX PHP-SDK',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_SSL_VERIFYPEER => $sslverify,
-			CURLOPT_TIMEOUT_MS=> 100
+            	CURLOPT_USERAGENT => 'executium OKEX PHP-SDK',
+            	CURLOPT_RETURNTRANSFER => true,
+            	CURLOPT_SSL_VERIFYPEER => $sslverify,
+		CURLOPT_TIMEOUT_MS=> 5000
         )
         );
 
