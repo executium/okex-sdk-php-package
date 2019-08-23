@@ -74,6 +74,10 @@ Do not provide unnecessary parameters in the second argument if the documentatio
 
 The initial `okex.class.php` and `example.php` file is provided with 10 easy to access functions ranging from ordering to canceling and querying OKEX public data.
 
+## Who is this for?
+
+This is for people looking for a PHP OKEX script, people that maybe searching without much luck for a OKEX PHP example or OKEX PHP function. The key really is to connect this script with the coders and traders that need it, as like us, when you was searching for OKEX and PHP there wasn't much in way of resources.
+
 # License
 
 MIT License
