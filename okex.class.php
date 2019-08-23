@@ -1,8 +1,7 @@
 <?php
 
 /*
-*
-	##
+*	##
 	## OKEX PHP SDK PACKAGE
 	##
 	// Copyright (c) 2019 Executium LTD (support@executium.com)
@@ -56,7 +55,7 @@ class okexAPI
             	CURLOPT_USERAGENT => 'executium OKEX PHP-SDK',
             	CURLOPT_RETURNTRANSFER => true,
             	CURLOPT_SSL_VERIFYPEER => $sslverify,
-		CURLOPT_TIMEOUT_MS=> 5000
+		CURLOPT_TIMEOUT_MS=> $timeout
         )
         );
 
