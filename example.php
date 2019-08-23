@@ -65,6 +65,14 @@
 		//$output = $okexAPI->order_limit('buy','BTC-USDT',9001,0.001,10);
 		//print_r($output);
 
+		##/ BUY MARKET on OKEX
+		//$output = $okexAPI->order_market('buy','BTC-USDT',0,11);
+		//print_r($output);
+		
+		##/ SELL MARKET on OKEX
+		//$output = $okexAPI->order_market('sell','BTC-USDT',0,11);
+		//print_r($output);
+		
 		##/ SELL LIMIT on OKEX
 		//$output = $okexAPI->order_limit('sell','BTC-USDT',11900,0.001,10);
 		//print_r($output);
