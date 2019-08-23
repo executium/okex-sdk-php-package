@@ -41,7 +41,7 @@ class okexAPI
 
     function __construct($key, $secret, $passphrase, $getinfo=false, $url='https://www.okex.com', $locale='en_US', $sslverify=true, $timeout=10000)
     {
-		//
+	//
         $this->key = $key;
         $this->secret= ($secret);
         $this->passphrase = $passphrase;
@@ -83,53 +83,53 @@ class okexAPI
 
     function order_market($side,$instrument,$size,$notional)
     {
-		$arr=array('type'=>'market','side'=>$side,'instrument_id'=>$instrument,'size'=>$size,'notional'=>$notional);
-		##/
-		return $this->query('/api/spot/v3/orders',$arr);
+	$arr=array('type'=>'market','side'=>$side,'instrument_id'=>$instrument,'size'=>$size,'notional'=>$notional);
+	##/
+	return $this->query('/api/spot/v3/orders',$arr);
     }
 
     function order_cancel($orderID,$instrument)
     {
-		##/
-		return $this->query('/api/spot/v3/cancel_orders/'.$orderID,array('instrument_id'=>$instrument));
+	##/
+	return $this->query('/api/spot/v3/cancel_orders/'.$orderID,array('instrument_id'=>$instrument));
     }
 
     function order_limit($side,$instrument,$price,$size,$notional)
     {
-		$arr=array('type'=>'limit','side'=>$side,'price'=>$price,'instrument_id'=>$instrument,'size'=>$size,'notional'=>$notional);
-		##/
-		return $this->query('/api/spot/v3/orders',$arr);
+	$arr=array('type'=>'limit','side'=>$side,'price'=>$price,'instrument_id'=>$instrument,'size'=>$size,'notional'=>$notional);
+	##/
+	return $this->query('/api/spot/v3/orders',$arr);
     }
 
     function order_book($instrument,$size=5,$depth=0.2)
     {
-		##/
-		return $this->query('/api/spot/v3/instruments/'.$instrument.'/book?size='.$size.'&depth='.$depth,array());
+	##/
+	return $this->query('/api/spot/v3/instruments/'.$instrument.'/book?size='.$size.'&depth='.$depth,array());
     }
 
     function token_pair_details()
     {
-		##/
-		return $this->query('/api/spot/v3/instruments',array());
+	##/
+	return $this->query('/api/spot/v3/instruments',array());
     }
 
     function ticker($instrument)
     {
-		##/
-		return $this->query('/api/spot/v3/instruments/'.$instrument.'/ticker',array());
+	##/
+	return $this->query('/api/spot/v3/instruments/'.$instrument.'/ticker',array());
     }
 
     function trades($instrument,$limit=20)
     {
-		##/
-		return $this->query('/api/spot/v3/instruments/'.$instrument.'/trades?limit='.$limit,array());
+	##/
+	return $this->query('/api/spot/v3/instruments/'.$instrument.'/trades?limit='.$limit,array());
     }
 
     function sign($timestamp,$method,$path,$json,$secret)
     {
-		##/
+	##/
         $sign=hash_hmac('sha256',($timestamp.$method.$path.$json),$secret,true);
-		##/
+	##/
         return base64_encode($sign);
     }
 
@@ -140,33 +140,33 @@ class okexAPI
 	        ##/
 	        $method='GET'; $json='';
 
-			/*
-				##/
-				Assigning the correct METHOD is essential to OKEX working, if you send a query with parameters when its not required you will get a very confusing 405, but this just means that you sent data that wasn't required.
-			*/
+		/*
+			##/
+			Assigning the correct METHOD is essential to OKEX working, if you send a query with parameters when its not required you will get a very confusing 405, but this just means that you sent data that wasn't required.
+		*/
 
-			##/ Encode array to JSON
+		##/ Encode array to JSON
 	        if(count($request)>0)
 	        {
-	            ##/
-		        $json = json_encode($request);
-		        ##/
-		        $method='POST';
+			##/
+			$json = json_encode($request);
+			##/
+			$method='POST';
 	        }
 
 	        ##/ Timestamp - Epoch
-			$timestamp = $this->epoch();
+		$timestamp = $this->epoch();
 
-			##/
+		##/
 	        $headers = array
 	        (
-				"Content-Type: application/json; charset=UTF-8",
-				"Cookie: locale=".$this->locale,
-			    'Content-Length: '.strlen($json),
-	            'OK-ACCESS-KEY: '.$this->key,
-	            'OK-ACCESS-SIGN: '.$this->sign($timestamp,$method,$path,$json,$this->secret),
-	            'OK-ACCESS-TIMESTAMP: '.$timestamp,
-	            'OK-ACCESS-PASSPHRASE: '.$this->passphrase,
+			"Content-Type: application/json; charset=UTF-8",
+			"Cookie: locale=".$this->locale,
+			'Content-Length: '.strlen($json),
+			'OK-ACCESS-KEY: '.$this->key,
+			'OK-ACCESS-SIGN: '.$this->sign($timestamp,$method,$path,$json,$this->secret),
+			'OK-ACCESS-TIMESTAMP: '.$timestamp,
+			'OK-ACCESS-PASSPHRASE: '.$this->passphrase,
 	        );
 
 	        // make request
@@ -189,17 +189,17 @@ class okexAPI
 
 	        ##/
 	        $result = json_decode(curl_exec($this->curl), JSON_FORCE_OBJECT);
+		##/
+		if($this->getinfo==true)
+		{
 			##/
-			if($this->getinfo==true)
-			{
-				##/
-				$result['getinfo']=curl_getinfo($this->curl);
-	            ##/
+			$result['getinfo']=curl_getinfo($this->curl);
+	            	##/
 		        if($result['getinfo']['http_code']==0)
 		        {
 		            $result['executium_helper'][]='Connection timed out, check your connection or increase the timeout variable';
 		        }
-			}
+		}
 
 	        ##/ Trying to be helpful just encase you haven't read the class
 	        if(isset($result['code']))
@@ -212,12 +212,12 @@ class okexAPI
 		        }
 	        }
 
-	        ##/
-		    return $result;
+		##/
+		return $result;
         }
-		catch (Exception $e)
-		{
-			return array('error'=>$e->getMessage());
-		}
+	catch (Exception $e)
+	{
+		return array('error'=>$e->getMessage());
+	}
     }
 }
