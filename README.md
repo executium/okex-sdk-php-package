@@ -9,15 +9,12 @@ Initial upload has now been made and ability provide so that the user can query 
 In the `example.php` file you will find a range of predefined functions and how to get started
 
 ```php
-
-	##/
-	define("OKEX_KEY","YOUR-KEY");
-	define("OKEX_SECRET","YOUR-SECRET");
-	define("OKEX_PASSPHRASE","YOUR-PASSPHRASE");
-
-	##/
-	$okexAPI = new okexAPI(OKEX_KEY,OKEX_SECRET,OKEX_PASSPHRASE);
-
+##/
+define("OKEX_KEY","YOUR-KEY");
+define("OKEX_SECRET","YOUR-SECRET");
+define("OKEX_PASSPHRASE","YOUR-PASSPHRASE");
+##/
+$okexAPI = new okexAPI(OKEX_KEY,OKEX_SECRET,OKEX_PASSPHRASE);
 ```
 You must generate API credentials via OKEX, they will require that you have some form of two-factor authentication
 
